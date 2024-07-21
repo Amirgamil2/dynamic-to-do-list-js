@@ -1,19 +1,12 @@
 
         // Ensure the script runs after the HTML document has fully loaded
+        // Ensure the script runs after the HTML document has fully loaded
         document.addEventListener('DOMContentLoaded', () => {
             // Select DOM elements and store them in constants
             const addButton = document.getElementById('add-task-btn');
             const taskInput = document.getElementById('task-input');
             const taskList = document.getElementById('task-list');
 
-            // Load tasks from Local Storage
-            loadTasks();
-
-            // Function to load tasks from Local Storage
-            function loadTasks() {
-                const storedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-                storedTasks.forEach(taskText => addTask(taskText, false));
-            }            
             // Function to add a new task to the list
             function addTask() {
                 // Retrieve and trim the value from the task input field
@@ -49,6 +42,19 @@
                 taskInput.value = '';
             }
 
+            // Attach event listener to addButton to call addTask when clicked
+            addButton.addEventListener('click', addTask);
+
+            // Attach event listener to taskInput for the 'keypress' event
+            taskInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    addTask();
+                }
+            });
+
+            // Optionally, you can invoke addTask on DOMContentLoaded to load initial data
+            // If you have initial data to load, you can call addTask here
+        });
             // Attach event listener to addButton to call addTask when clicked
             addButton.addEventListener('click', addTask);
 
