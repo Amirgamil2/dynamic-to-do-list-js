@@ -1,6 +1,5 @@
 
         // Ensure the script runs after the HTML document has fully loaded
-        // Ensure the script runs after the HTML document has fully loaded
         document.addEventListener('DOMContentLoaded', () => {
             // Select DOM elements and store them in constants
             const addButton = document.getElementById('add-task-btn');
@@ -51,9 +50,6 @@
                     addTask();
                 }
             });
-
-            // Optionally, you can invoke addTask on DOMContentLoaded to load initial data
-            // If you have initial data to load, you can call addTask here
         });
             // Attach event listener to addButton to call addTask when clicked
             addButton.addEventListener('click', addTask);
@@ -64,7 +60,6 @@
                     addTask();
                 }
             });
-        });
             // Function to load tasks from Local Storage
             function loadTasks() {
                 const storedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
